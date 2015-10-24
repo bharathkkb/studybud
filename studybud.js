@@ -1,4 +1,10 @@
+Locations = new Mongo.Collection("Locations");
+edudata = new Mongo.Collection("edudata");
 if (Meteor.isClient) {
+ 
+
+
+     
   // counter starts at 0
   Session.setDefault('counter', 0);
 
@@ -11,7 +17,31 @@ if (Meteor.isClient) {
   Template.welcomeuser.helpers({
     user: function () {
       return Meteor.user().username;
-    }
+    },
+    loc: function () {
+
+      if(!(Locations.findOne({createdBy: Meteor.userId()})))
+         {
+          navigator.geolocation.getCurrentPosition(function(position) {
+           
+             Locations.insert({
+                 lat: position.coords.latitude,
+                 lng: position.coords.longitude,
+                 createdBy: Meteor.userId(),
+                 username:Meteor.userId().username,
+                 createdDate: new Date()
+             });
+             });
+         }
+       },
+       edu:function(){
+        if(!(edudata.findOne({createdBy: Meteor.userId()}))){
+          edudata.insert({
+            data1: document.getElementById('textbox');
+          });
+        }
+
+       }
   });
 
   Template.hello.events({
