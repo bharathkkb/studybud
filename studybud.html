@@ -9,6 +9,7 @@
   {{>loginButtons}}
   {{#if currentUser}}
   {{>welcomeuser}}
+  {{>loclist}}
   {{/if}}
 </body>
 
@@ -21,4 +22,19 @@
   
   <p>Hey! Sup {{user}}</p>
   <p>{{loc}}</p>
+</template>
+
+<template name="loclist">
+  {{#each locations}}
+{{>singleloc}}
+{{/each}}
+
+  
+  
+</template>
+<template name="singleloc">
+  <p> Position {{latlong}}</p>
+
+  
+  
 </template>

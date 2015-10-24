@@ -13,7 +13,19 @@ if (Meteor.isClient) {
       return Session.get('counter');
     }
   });
-
+Template.singleloc.helpers({
+  latlong: function () {
+    
+      return this.lat;
+    }
+});
+Template.loclist.helpers({
+  locations: function () {
+    
+      
+      return Locations.find({});
+    }
+});
   Template.welcomeuser.helpers({
     user: function () {
       return Meteor.user().username;
@@ -33,15 +45,16 @@ if (Meteor.isClient) {
              });
              });
          }
-       },
-       edu:function(){
-        if(!(edudata.findOne({createdBy: Meteor.userId()}))){
-          edudata.insert({
-            data1: document.getElementById('textbox');
-          });
-        }
-
        }
+       // ,
+       // edu:function(){
+       //  if(!(edudata.findOne({createdBy: Meteor.userId()}))){
+       //    edudata.insert({
+       //      data1: document.getElementById('textbox');
+       //    });
+       //  }
+
+       // }
   });
 
   Template.hello.events({
