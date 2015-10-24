@@ -7,9 +7,17 @@
 
   {{> hello}}
   {{>loginButtons}}
+  {{#if currentUser}}
+  {{>welcomeuser}}
+  {{/if}}
 </body>
 
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="welcomeuser">
+  
+  <p>Hey! Sup {{user}}</p>
 </template>
